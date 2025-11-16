@@ -1,22 +1,30 @@
----
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 namespace: prod
 
 resources:
-  - ../../base
-  - frontend.yaml
-  - infrastructure.yaml
+- ../../base
+- frontend.yaml
+- infrastructure.yaml
 
 patches:
-  - patch: |-
-      - op: add
-        path: /spec/template/spec/imagePullSecrets
-        value: [{ name: github }]
-      - op: add
-        path: /spec/progressDeadlineSeconds
-        value: 60
-    target:
-      kind: Deployment
-      labelSelector: app.kubernetes.io/part-of=booking-microservices
+- patch: |-
+    - op: add
+      path: /spec/template/spec/imagePullSecrets
+      value: [{ name: github }]
+    - op: add
+      path: /spec/progressDeadlineSeconds
+      value: 60
+  target:
+    kind: Deployment
+    labelSelector: app.kubernetes.io/part-of=booking-microservices
+images:
+- name: ghcr.io/przemyslaw22/course-bm-booking
+  newTag: 1.1.3
+- name: ghcr.io/przemyslaw22/course-bm-flight
+  newTag: 1.1.3
+- name: ghcr.io/przemyslaw22/course-bm-identity
+  newTag: 1.1.3
+- name: ghcr.io/przemyslaw22/course-bm-passenger
+  newTag: 1.1.3
