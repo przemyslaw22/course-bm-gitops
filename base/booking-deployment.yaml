@@ -17,13 +17,14 @@ spec:
         app: booking
     spec:
       containers:
-        - image: k8smaestro/bm-booking:1.0.0
+        # CHANGE TO YOURS:<org/repo:tag>
+        - image: ghcr.io/przemyslaw22/course-bm-booking:latest
           name: booking
           ports:
             - containerPort: 8080
           env:
-          - name: ASPNETCORE_ENVIRONMENT
-            value: docker                             
+            - name: ASPNETCORE_ENVIRONMENT
+              value: docker
           resources:
             requests:
               memory: 64Mi

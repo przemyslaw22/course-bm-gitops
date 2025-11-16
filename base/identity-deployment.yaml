@@ -17,13 +17,14 @@ spec:
         app: identity
     spec:
       containers:
-        - image: k8smaestro/bm-identity:1.0.0
+        # CHANGE TO YOURS:<org/repo:tag>
+        - image: ghcr.io/przemyslaw22/course-bm-identity:latest
           name: identity
           ports:
             - containerPort: 8080
           env:
-          - name: ASPNETCORE_ENVIRONMENT
-            value: docker
+            - name: ASPNETCORE_ENVIRONMENT
+              value: docker
           resources:
             requests:
               memory: 64Mi
