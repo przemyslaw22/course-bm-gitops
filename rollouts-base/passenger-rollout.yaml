@@ -1,6 +1,6 @@
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: passenger
   labels:
@@ -35,13 +35,8 @@ spec:
             limits:
               memory: 512Mi
               cpu: 256m
-  # strategy:
-  #   canary: 
-      # canaryService: passenger-canary
-      # stableService: passenger-stable
-      # trafficRouting:
-      #   nginx:
-      #     stableIngress: booking-microservies
-      # steps:
-      # - setWeight: 20
-      # - pause: {}
+  strategy:
+    blueGreen: 
+      activeService: passenger-stable
+      previewService: passenger-preview
+      autoPromotionEnabled: false

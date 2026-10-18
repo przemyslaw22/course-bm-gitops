@@ -1,0 +1,88 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: booking-microservies-preview
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    # This enables HTTP connections from Internet clients
+    kubernetes.io/ingress.allow-http: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: preview.127.0.0.1.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-preview
+                port:
+                  number: 80
+          - path: /(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: frontend-preview
+                port:
+                  number: 80
+
+          - path: /identity
+            pathType: Prefix
+            backend:
+              service:
+                name: identity-preview
+                port:
+                  number: 80
+          - path: /identity/(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: identity-preview
+                port:
+                  number: 80
+
+          - path: /flight
+            pathType: Prefix
+            backend:
+              service:
+                name: flight-preview
+                port:
+                  number: 80
+          - path: /flight/(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: flight-preview
+                port:
+                  number: 80
+
+          - path: /passenger
+            pathType: Prefix
+            backend:
+              service:
+                name: passenger-preview
+                port:
+                  number: 80                  
+          - path: /passenger/(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: passenger-preview
+                port:
+                  number: 80
+
+          - path: /booking
+            pathType: Prefix
+            backend:
+              service:
+                name: booking-preview
+                port:
+                  number: 80                    
+          - path: /booking/(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: booking-preview
+                port:
+                  number: 80

@@ -1,6 +1,6 @@
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: identity
   labels:
@@ -32,13 +32,9 @@ spec:
             limits:
               memory: 512Mi
               cpu: 256m
-  # strategy:
-  #   canary: 
-      # canaryService: identity-canary
-      # stableService: identity-stable
-      # trafficRouting:
-      #   nginx:
-      #     stableIngress: booking-microservies
-      # steps:
-      # - setWeight: 20
-      # - pause: {}
+  strategy:
+    blueGreen: 
+      activeService: identity-stable
+      previewService: identity-preview
+      autoPromotionEnabled: false
+

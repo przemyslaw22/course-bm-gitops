@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: frontend
 spec:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: rollouts-demo
-        image: k8smaestro/argo-rollouts-demo:red
+        image: k8smaestro/argo-rollouts-demo:blue
         ports:
         - name: http
           containerPort: 80
@@ -38,16 +38,11 @@ spec:
             port: http
           failureThreshold: 1
           periodSeconds: 10
-  # strategy:
-  #   canary: 
-      # canaryService: frontend-canary
-      # stableService: frontend-stable
-      # trafficRouting:
-      #   nginx:
-      #     stableIngress: booking-microservies
-      # steps:
-      # - setWeight: 20
-      # - pause: {}
+  strategy:
+    blueGreen: 
+      activeService: frontend-stable
+      previewService: frontend-preview
+      autoPromotionEnabled: false
 ---
 apiVersion: v1
 kind: Service
@@ -66,7 +61,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-canary
+  name: frontend-preview
 spec:
   selector:
     app: frontend
@@ -76,3 +71,4 @@ spec:
     port: 80
     targetPort: 80
   type: ClusterIP
+  

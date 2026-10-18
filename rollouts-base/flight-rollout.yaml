@@ -33,12 +33,7 @@ spec:
               memory: 512Mi
               cpu: 256m
   strategy:
-    canary: 
-      canaryService: flight-canary
-      stableService: flight-stable
-      trafficRouting:
-        nginx:
-          stableIngress: booking-microservies
-      steps:
-      - setWeight: 20
-      - pause: {}
+    blueGreen: 
+      activeService: flight-stable
+      previewService: flight-preview
+      autoPromotionEnabled: false

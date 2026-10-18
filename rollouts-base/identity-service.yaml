@@ -16,7 +16,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: identity-canary
+  name: identity-preview
 spec:
   selector:
     app: identity
