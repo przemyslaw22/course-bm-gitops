@@ -22,6 +22,8 @@ spec:
     spec:
       containers:
         - env:
+            - name: EVENTSTORE_ALLOW_UNKNOWN_OPTIONS
+              value: "true"
             - name: EVENTSTORE_CLUSTER_SIZE
               value: "1"
             - name: EVENTSTORE_ENABLE_ATOM_PUB_OVER_HTTP
