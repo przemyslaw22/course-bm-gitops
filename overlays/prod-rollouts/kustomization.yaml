@@ -30,7 +30,7 @@ patches:
 
 images:
 - name: k8smaestro/argo-rollouts-demo
-  newTag: green
+  newTag: blue
 - name: ghcr.io/przemyslaw22/course-bm-booking
   newTag: 1.1.3
 - name: ghcr.io/przemyslaw22/course-bm-flight
