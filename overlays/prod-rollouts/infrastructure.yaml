@@ -38,7 +38,7 @@ spec:
               value: All
             - name: EVENTSTORE_START_STANDARD_PROJECTIONS
               value: "true"
-          image: eventstore/eventstore:21.2.0-buster-slim
+          image: eventstore/eventstore:21.10.9-buster-slim
           name: eventstore
           ports:
             - containerPort: 1113
