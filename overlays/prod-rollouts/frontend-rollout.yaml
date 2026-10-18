@@ -1,5 +1,5 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: frontend
 spec:
@@ -38,16 +38,16 @@ spec:
             port: http
           failureThreshold: 1
           periodSeconds: 10
-  strategy:
-    canary: 
-      canaryService: frontend-canary
-      stableService: frontend-stable
-      trafficRouting:
-        nginx:
-          stableIngress: booking-microservies
-      steps:
-      - setWeight: 20
-      - pause: {}
+  # strategy:
+  #   canary: 
+      # canaryService: frontend-canary
+      # stableService: frontend-stable
+      # trafficRouting:
+      #   nginx:
+      #     stableIngress: booking-microservies
+      # steps:
+      # - setWeight: 20
+      # - pause: {}
 ---
 apiVersion: v1
 kind: Service

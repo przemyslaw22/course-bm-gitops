@@ -31,14 +31,14 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: identity
+                name: identity-stable
                 port:
                   number: 80
           - path: /identity/(.*)
             pathType: ImplementationSpecific
             backend:
               service:
-                name: identity
+                name: identity-stable
                 port:
                   number: 80
 
@@ -46,14 +46,14 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: flight
+                name: flight-stable
                 port:
                   number: 80
           - path: /flight/(.*)
             pathType: ImplementationSpecific
             backend:
               service:
-                name: flight
+                name: flight-stable
                 port:
                   number: 80
 
@@ -61,14 +61,14 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: passenger
+                name: passenger-stable
                 port:
                   number: 80                  
           - path: /passenger/(.*)
             pathType: ImplementationSpecific
             backend:
               service:
-                name: passenger
+                name: passenger-stable
                 port:
                   number: 80
 
@@ -76,13 +76,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: booking
+                name: booking-stable
                 port:
                   number: 80                    
           - path: /booking/(.*)
             pathType: ImplementationSpecific
             backend:
               service:
-                name: booking
+                name: booking-stable
                 port:
                   number: 80

@@ -2,7 +2,21 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: passenger
+  name: passenger-stable
+spec:
+  selector:
+    app: passenger
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: passenger-canary
 spec:
   selector:
     app: passenger

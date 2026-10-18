@@ -2,7 +2,21 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: flight
+  name: flight-stable
+spec:
+  selector:
+    app: flight
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flight-canary
 spec:
   selector:
     app: flight
